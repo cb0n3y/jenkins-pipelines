@@ -1,5 +1,10 @@
 # 🛠️ jenkins-pipelines
 
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/cb0n3y/jenkins-pipelines)
+![Last Commit](https://img.shields.io/github/last-commit/cb0n3y/jenkins-pipelines)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cb0n3y/jenkins-pipelines/ci.yml?label=CI%2FCD)
+
 Welcome to **jenkins-pipelines** — a personal learning repository where I document my day-by-day progress in mastering **Jenkins Pipelines**.
 
 This repo is intended to be a living knowledge base that grows as I explore Jenkins automation, CI/CD best practices, and pipeline scripting techniques.
