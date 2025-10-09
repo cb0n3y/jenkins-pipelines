@@ -6,8 +6,6 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cb0n3y/jenkins-pipelines/ci.yml?label=CI%2FCD)
 ![Top Language](https://img.shields.io/github/languages/top/cb0n3y/jenkins-pipelines)
 ![Languages Count](https://img.shields.io/github/languages/count/cb0n3y/jenkins-pipelines)
-![GitHub Stars](https://img.shields.io/github/stars/cb0n3y/jenkins-pipelines?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/cb0n3y/jenkins-pipelines?style=social)
 ![Shell Scripts Linting](https://img.shields.io/badge/Linting-shellcheck-yellow)
 
 
