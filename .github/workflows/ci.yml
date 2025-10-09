@@ -1,0 +1,40 @@
+---
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-validate:
+    name: Lint & Validate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Run a basic shell script check
+        run: |
+          echo "Listing top-level folders:"
+          ls -la
+
+      - name: Validate YAML files
+        run: |
+          find . -name '*.yml' -o -name '*.yaml' | xargs -I {} yamllint {}
+
+      - name: Check for trailing whitespace (basic linting)
+        run: |
+          if grep -rI --include '*.sh' '[[:space:]]$' ./; then
+            echo "Trailing whitespace found!"
+            exit 1
+          else
+            echo "No trailing whitespace."
+          fi
