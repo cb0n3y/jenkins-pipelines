@@ -32,9 +32,32 @@ jobs:
 
       - name: Check for trailing whitespace (basic linting)
         run: |
-          if grep -rI --include '*.sh' '[[:space:]]$' ./; then
+          if grep -rI --include '*.groovy' --include '*.yml' '[[:space:]]$' ./; then
             echo "Trailing whitespace found!"
             exit 1
           else
             echo "No trailing whitespace."
           fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install npm-groovy-lint
+        run: |
+          npm install -g npm-groovy-lint
+
+      - name: Validate Jenkinsfile / Groovy pipeline
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            jenkins/jenkinsfile-runner:latest \
+            lint day_*/**/*.groovy
+
+      - name: Fail if any linting failed
+        if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
+        run: |
+          echo "One or more linting checks failed!"
+          exit 1
