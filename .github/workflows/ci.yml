@@ -54,7 +54,7 @@ jobs:
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             jenkins/jenkinsfile-runner:latest \
-            lint day_*/**/*.groovy
+            lint day_*/**/
 
       - name: Fail if any linting failed
         if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
