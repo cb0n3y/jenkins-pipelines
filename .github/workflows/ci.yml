@@ -48,9 +48,14 @@ jobs:
         run: |
           npm install -g npm-groovy-lint
 
-      - name: Run npm-groovy-lint
+      - name: Validate Jenkinsfile / Groovy pipeline
         run: |
-          npm-groovy-lint "day_*/**/*.groovy"
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace jenkins/jenkinsfile-runner:latest /bin/sh -c '
+          for f in day_*/**/*.groovy; do
+            echo "Validating $f ..."
+            groovy -cp /usr/share/jenkins/ref/plugins/*:$PWD $f || exit 1
+          done
+          '
 
       - name: Fail if any linting failed
         if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
