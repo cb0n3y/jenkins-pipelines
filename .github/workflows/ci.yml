@@ -32,7 +32,7 @@ jobs:
 
       - name: Check for trailing whitespace (basic linting)
         run: |
-          if grep -rI --include '*.sh' '[[:space:]]$' ./ || true; then
+          if grep -rI --include '*.groovy' --include '*.yml' '[[:space:]]$' ./; then
             echo "Trailing whitespace found!"
             exit 1
           else
