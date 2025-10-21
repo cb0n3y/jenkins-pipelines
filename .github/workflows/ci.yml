@@ -50,16 +50,11 @@ jobs:
 
       - name: Validate Jenkinsfile / Groovy pipeline
         run: |
-          for f in day_*/**/*.groovy; do
-          echo "Validating $f ..."
-            docker run --rm \
-              -v ${{ github.workspace }}:/workspace \
-              -w /workspace \
-              jenkins/jenkinsfile-runner:latest \
-              -w /workspace \
-              -p /usr/share/jenkins/ref/plugins \
-              -f $f || exit 1
-          done
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            jenkins/jenkinsfile-runner:latest \
+            lint day_*/**/*.groovy
 
       - name: Fail if any linting failed
         if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
