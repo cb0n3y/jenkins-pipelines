@@ -32,9 +32,25 @@ jobs:
 
       - name: Check for trailing whitespace (basic linting)
         run: |
-          if grep -rI --include '*.sh' '[[:space:]]$' ./; then
+          if grep -rI --include '*.sh' '[[:space:]]$' ./ || true; then
             echo "Trailing whitespace found!"
             exit 1
           else
             echo "No trailing whitespace."
           fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Lint Groovy scripts
+        uses: nvuillam/npm-groovy-lint-action@v2
+        with:
+          files: "day_*/**/*.groovy"
+
+      - name: Fail if any linting failed
+        if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
+        run: |
+          echo "One or more linting checks failed!"
+          exit 1
