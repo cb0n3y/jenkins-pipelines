@@ -44,10 +44,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Lint Groovy scripts
-        uses: nvuillam/npm-groovy-lint-action@v3
-        with:
-          files: "day_*/**/*.groovy"
+      - name: Install npm-groovy-lint
+        run: |
+          npm install -g npm-groovy-lint
+
+      - name: Run npm-groovy-lint
+        run: |
+          npm-groovy-lint day_*/**/*.groovy
 
       - name: Fail if any linting failed
         if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
