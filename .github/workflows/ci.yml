@@ -50,7 +50,7 @@ jobs:
 
       - name: Run npm-groovy-lint
         run: |
-          npm-groovy-lint day_*/**/*.groovy
+          npm-groovy-lint "day_*/**/*.groovy"
 
       - name: Fail if any linting failed
         if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
