@@ -45,7 +45,7 @@ jobs:
           node-version: '20'
 
       - name: Lint Groovy scripts
-        uses: nvuillam/npm-groovy-lint-action@v2
+        uses: nvuillam/npm-groovy-lint-action@v3
         with:
           files: "day_*/**/*.groovy"
 
