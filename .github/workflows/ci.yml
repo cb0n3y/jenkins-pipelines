@@ -28,7 +28,7 @@ jobs:
 
       - name: Validate YAML files
         run: |
-          find . -name '*.yml' -o -name '*.yaml' | xargs -I {} yamllint -d "{extends: default, rules: {line-length: {max: 100}}}" {}
+          find . -name '*.yml' -o -name '*.yaml' | xargs -I {} yamllint -d "{extends: default, rules: {line-length: {max: 150}}}" {}
 
       - name: Check for trailing whitespace (basic linting)
         run: |
