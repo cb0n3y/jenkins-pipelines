@@ -64,7 +64,7 @@ jobs:
           echo "$files" | xargs -n 1 -P 4 -I {} docker run --rm \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
-            jenkins/jenkinsfile-runner:latest-jdk17 \
+            jenkins/jenkinsfile-runner:latest \
             lint -f "{}"
 
       - name: Fail if any linting failed
