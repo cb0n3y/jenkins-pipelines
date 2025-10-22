@@ -50,11 +50,15 @@ jobs:
 
       - name: Validate Jenkinsfile / Groovy pipeline
         run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            jenkins/jenkinsfile-runner:latest \
-            lint -f day_*/**/Jenkinsfile
+          set -e
+          for f in $(find day_* -type f -name 'Jenkinsfile'); do
+            echo "Linting $f ..."
+            docker run --rm \
+              -v ${{ github.workspace }}:/workspace \
+              -w /workspace \
+              jenkins/jenkinsfile-runner:latest \
+              lint -f "$f" || exit 1
+          done
 
       - name: Fail if any linting failed
         if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
