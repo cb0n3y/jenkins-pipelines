@@ -10,27 +10,19 @@ on:
       - main
 
 jobs:
-  lint-and-validate:
-    name: Lint & Validate
+  lint-yaml:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: main
-
-      - name: Run a basic shell script check
-        run: |
-          echo "Listing top-level folders:"
-          ls -la
-
+      - uses: actions/checkout@v4
       - name: Validate YAML files
         run: |
           find . -name '*.yml' -o -name '*.yaml' | xargs -I {} yamllint -d "{extends: default, rules: {line-length: {max: 150}}}" {}
 
-      - name: Check for trailing whitespace (basic linting)
+  lint-trailing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for trailing whitespace
         run: |
           if grep -rI --include '*.groovy' --include '*.yml' '[[:space:]]$' ./; then
             echo "Trailing whitespace found!"
@@ -39,36 +31,32 @@ jobs:
             echo "No trailing whitespace."
           fi
 
+  lint-groovy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-
       - name: Install npm-groovy-lint
-        run: |
-          npm install -g npm-groovy-lint
+        run: npm install -g npm-groovy-lint
+      - name: Lint Groovy files
+        run: npm-groovy-lint
 
-      - name: Cache Jenkins Runner data
-        uses: actions/cache@v4
-        with:
-          path: ~/.jenkinsfile-runner
-          key: jfr-${{ runner.os }}-2.528.1
-
-      - name: Validate Jenkinsfile / Groovy pipeline
-        run: |
-          set -e
-          # Find all Jenkinsfiles
-          files=$(find day_* -type f -name 'Jenkinsfile')
-
-          # Run linting in parallel (4 jobs here, adjust -j)
-          echo "$files" | xargs -n 1 -P 4 -I {} docker run --rm \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            jenkins/jenkinsfile-runner:latest \
-            lint -f "{}"
-
-      - name: Fail if any linting failed
-        if: steps.yamllint.outputs.failed == 'true' || steps.trailing.outputs.failed == 'true'
-        run: |
-          echo "One or more linting checks failed!"
-          exit 1
+  # lint-jenkinsfiles:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Cache Jenkins Runner data
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.jenkinsfile-runner
+  #         key: jfr-${{ runner.os }}-2.528.1
+  #     - name: Validate Jenkinsfiles in parallel
+  #       run: |
+  #         find day_* -type f -name 'Jenkinsfile' | xargs -n 1 -P 4 -I {} docker run --rm \
+  #           -v ${{ github.workspace }}:/workspace \
+  #           -w /workspace \
+  #           jenkins/jenkinsfile-runner:latest \
+  #           lint -f "{}"
