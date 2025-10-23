@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+        BUILD_DEFAULT_DIR = 'build'
+        BUILD_FILE_NAME = 'laptop.txt'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                cleanWs()
+                sh '''
+                    echo "Building a new laptop ..."
+                    mkdir -p $BUILD_DEFAULT_DIR
+                    touch $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    echo "Mainboard" >> $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    cat $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    echo "Display" >> $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    cat $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    echo "Keyboard" >> $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    cat $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                '''
+            }
+        }
+        
+        stage ('Test') {
+            steps {
+                echo 'Testing the new laptop ...'
+                sh '''
+                    test -f $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    grep "Mainboard" $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    grep "Display" $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    grep "Keyboard" $BUILD_DEFAULT_DIR/$BUILD_FILE_NAME
+                    echo "[+] Your new Laptop is almost ready!"
+                '''
+            }
+        }
+    }
+    post{
+        success {
+            archiveArtifacts artifacts: 'build/**'
+        }
+    }
+}
