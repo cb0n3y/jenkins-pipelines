@@ -40,4 +40,13 @@ sh '''
 - The Test stage is used to verify code functionality after build.
 - It can run unit tests, integration tests, or static analysis tools.
 
-[Example Test Stage](test-stage)
+[Example Test Stage](files/test-stage)
+
+---
+
+### Testing The Build
+
+- Validates build artifacts before deployment.
+- Ensures that outputs (e.g., JARs, Docker images) meet expected standards.
+
+[Example Testing The Build](files/testing-build-artifacts)
