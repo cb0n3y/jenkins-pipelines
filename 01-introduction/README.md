@@ -12,37 +12,37 @@ This section covers the basics of Jenkins, pipeline concepts, shell usage, and s
 - Basic pipeline syntax and structure
 - `sh` step and shell commands
 - Workspace management (`cleanWs()`)
-- **Key file:** [Jenkinsfile](day_01/Jenkinsfile)
-- **Notes:** [README.md](day_01/README.md)
+- **Key file:** [Jenkinsfile](day-01/Jenkinsfile)
+- **Notes:** [README.md](day-01/README.md)
 
 ### Day 02 – Pipeline Stages and Multiple Steps
 - Creating multiple stages in a pipeline
 - Combining shell steps
 - Hands-on examples with homeworks and multi-stage pipelines
 - **Key files:**
-  - [Jenkinsfile](day_02/Jenkinsfile)
-  - [Homework Jenkinsfile](day_02/homeworks/Jenkinsfile)
-  - [Two-stages Jenkinsfile](day_02/two-stages/Jenkinsfile)
-- **Notes:** [README.md](day_02/README.md)
+  - [Jenkinsfile](day-02/Jenkinsfile)
+  - [Homework Jenkinsfile](day-02/homeworks/Jenkinsfile)
+  - [Two-stages Jenkinsfile](day-02/two-stages/Jenkinsfile)
+- **Notes:** [README.md](day-02/README.md)
 
 ### Day 03 – Test Stage and Build Artifacts
 - Using the Test stage for verification
 - Running unit tests and static analysis
 - Archiving build artifacts
 - **Key files:**
-  - [Jenkinsfile](day_03/Jenkinsfile)
-  - Example test stage: [test-stage](day_03/files/test-stage)
-  - Testing build artifacts: [testing-build-artifacts](day_03/files/testing-build-artifacts)
-- **Notes:** [README.md](day_03/README.md)
+  - [Jenkinsfile](day-03/Jenkinsfile)
+  - Example test stage: [test-stage](day-03/files/test-stage)
+  - Testing build artifacts: [testing-build-artifacts](day-03/files/testing-build-artifacts)
+- **Notes:** [README.md](day-03/README.md)
 
 ### Day 04 – Real-World Example: Preparation Stage
-
+- Practical pipeline example for SBOM scanning of microservices releases
 - Installing tools (Helm and Syft) in a preparation stage
 - Environment variables and shell usage in a real-world scenario
 - **Key files:**
-  - [Jenkinsfile](day_04/Jenkinsfile)
-  - Example Groovy script: [real-world-example.groovy](day_04/files/real-world-example.groovy)
-- **Notes:** [README.md](day_04/README.md)
+  - [Jenkinsfile](day-04/Jenkinsfile)
+  - Example Groovy script: [real-world-example.groovy](day-04/files/real-world-example.groovy)
+- **Notes:** [README.md](day-04/README.md)
 
 ---
 
