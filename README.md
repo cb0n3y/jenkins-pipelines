@@ -49,7 +49,7 @@ jenkins-pipelines/
 
 - [x] Jenkins setup & configuration
 - [x] Declarative vs Scripted pipelines
-- [ ] Pipeline stages & steps
+- [x] Pipeline stages & steps
 - [ ] Parallel execution
 - [ ] Shared libraries
 - [ ] Webhooks & triggers
