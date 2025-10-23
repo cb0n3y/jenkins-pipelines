@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Preparation') {  // clearer than "Hello"
+        stage('Preparation') {
             steps {
                 sh '''
                 set -e
