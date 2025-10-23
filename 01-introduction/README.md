@@ -36,7 +36,7 @@ This section covers the basics of Jenkins, pipeline concepts, shell usage, and s
 - **Notes:** [README.md](day_03/README.md)
 
 ### Day 04 – Real-World Example: Preparation Stage
-- Practical pipeline example for SBOM scanning of microservices releases
+
 - Installing tools (Helm and Syft) in a preparation stage
 - Environment variables and shell usage in a real-world scenario
 - **Key files:**
