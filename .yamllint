@@ -2,9 +2,15 @@
 extends: default
 
 rules:
-  truthy: disable
-  trailing-spaces: enable
+  truthy: disable                  # Allow 'yes', 'no', 'true', 'false' (common in Ansible)
+  trailing-spaces: enable          # Warn about spaces at end of line
   colons:
-    max-spaces-after: 1
+    max-spaces-after: 1            # Only 1 space after colon
   line-length:
-    max: 150
+    max: 80                        # Warn if a line exceeds 80 characters
+    level: warning
+  indentation:
+    spaces: 2                       # Ansible standard is 2-space indentation
+  document-start: disable           # Don't require '---' at the top of every YAML
+  brackets: enable                  # Warn about extra spaces inside brackets
+  comments: enable                  # Warn about spacing in comments
