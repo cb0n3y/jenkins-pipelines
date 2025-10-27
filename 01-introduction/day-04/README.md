@@ -63,3 +63,26 @@ When combined, these three make pipelines flexible, reusable, and configurable �
 - parameters → Allow build-time customization.
 - environment → Define reusable, global variables.
 - withEnv() → Dynamically merge both for shell-level access.
+
+---
+
+### ⚡ Running Stages in Parallel
+
+🧠 What’s Happening
+
+Jenkins allows stages to run in parallel inside a parallel {} block. Each parallel branch executes independently, often on separate agents or executors, which speeds up the pipeline.
+
+This is useful for:
+
+- Installing multiple tools simultaneously (e.g., Helm and Syft)
+- Running tests across different environments at the same time
+- Performing multiple validations or checks concurrently
+
+[Example Running Stages in Parallel](files/pipelineParallelExecution.groovy)
+
+💡 Key Takeaways
+
+- Each parallel branch must have its own steps {} block.
+- Jenkins visualizes parallel stages side by side in the Blue Ocean or classic pipeline view.
+- If any branch fails, the whole parallel stage fails.
+- Ideal for speeding up CI/CD pipelines and running multiple independent tasks simultaneously.
