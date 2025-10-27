@@ -3,7 +3,7 @@
 
 ## What Have We Learned?
 
-### 
+###
 
 ---
 
@@ -41,3 +41,25 @@
 - Installs Helm and Syft in a local environment.
 - Shows environment variables, shell execution, and verification commands.
 - Full example: [files/real-world-example.groovy](files/real-world-example.groovy)
+
+---
+
+### 🔧 Integrating Parameters with environment and withEnv()
+
+🧠 What’s Happening
+
+So far, we’ve learned how:
+
+- environment {} defines global variables used throughout the pipeline.
+- parameters {} let us provide user input before a build (e.g., a version number, build type, or number of components).
+- withEnv() lets us dynamically pass parameters and environment variables into shell scripts or tools that expect environment variables.
+
+When combined, these three make pipelines flexible, reusable, and configurable — key traits in DevOps automation.
+
+[Example: Using Parameters and Environment Together](files/pipelineBuildCarPrototype.groovy)
+
+💡 Key Takeaways
+
+- parameters → Allow build-time customization.
+- environment → Define reusable, global variables.
+- withEnv() → Dynamically merge both for shell-level access.
