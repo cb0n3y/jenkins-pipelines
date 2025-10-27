@@ -12,7 +12,7 @@
 - Environment variables in Jenkins pipelines are defined inside the environment {} block.
 - They can be used in any stage or shell (sh) command using $VARIABLE_NAME.
 
-[Example Difining Environment Variables](Jenkinsfile)
+[Example Defining Environment Variables](Jenkinsfile)
 
 ---
 
@@ -40,7 +40,8 @@
 
 - Installs Helm and Syft in a local environment.
 - Shows environment variables, shell execution, and verification commands.
-- Full example: [files/real-world-example.groovy](files/real-world-example.groovy)
+
+[Example Real World Uses](files/real-world-example.groovy)
 
 ---
 
@@ -89,7 +90,7 @@ This is useful for:
 
 ---
 
-### Homework
+### 📝 Homework
 
 💡 Exercise: Parameterize Tool Versions
 
