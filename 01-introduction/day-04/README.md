@@ -86,3 +86,53 @@ This is useful for:
 - Jenkins visualizes parallel stages side by side in the Blue Ocean or classic pipeline view.
 - If any branch fails, the whole parallel stage fails.
 - Ideal for speeding up CI/CD pipelines and running multiple independent tasks simultaneously.
+
+---
+
+### Homework
+
+💡 Exercise: Parameterize Tool Versions
+
+Goal: Make the Helm and Syft installation versions configurable without modifying the pipeline code.
+
+Tasks:
+
+1. Add parameters for Helm and Syft versions
+
+- Add two string parameters at the top of your pipeline:
+
+```groovy
+parameters {
+    string(name: 'HELM_VERSION', defaultValue: '3.18.0', description: 'Which Helm version to install')
+    string(name: 'SYFT_VERSION', defaultValue: '1.34.2', description: 'Which Syft version to install')
+}
+```
+
+- These parameters allow you to dynamically select versions when starting a build.
+
+2. Use withEnv() to inject the parameters
+
+Wrap your installation commands in a withEnv() block so the shell commands can use the versions:
+
+```groovy
+withEnv(["HELM_VERSION=${params.HELM_VERSION}", "SYFT_VERSION=${params.SYFT_VERSION}"]) {
+    sh '''
+        echo "Installing Helm v$HELM_VERSION ..."
+        curl -sSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash -s -- --version v$HELM_VERSION --no-sudo
+
+        echo "Installing Syft v$SYFT_VERSION ..."
+        curl -sSL "https://github.com/anchore/syft/releases/download/v$SYFT_VERSION/syft_$SYFT_VERSION_linux_amd64.tar.gz" | tar -xz -C "$HOME/bin"
+    '''
+}
+```
+
+3. Test different versions
+
+- Run the pipeline multiple times with different Helm/Syft versions to see how parameters make the pipeline flexible.
+- Keep default values in parameters so builds still work if you don’t specify anything.
+
+This exercise teaches:
+
+- How to parameterize a pipeline for flexibility
+- How to use withEnv() to inject parameters into shell scripts
+- How default values allow safe builds without specifying parameters each time
