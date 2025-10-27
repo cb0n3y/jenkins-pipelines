@@ -3,7 +3,7 @@
 
 ## What Have We Learned?
 
-### 
+###
 
 ---
 
@@ -41,6 +41,8 @@
 - Installs Helm and Syft in a local environment.
 - Shows environment variables, shell execution, and verification commands.
 - Full example: [files/real-world-example.groovy](files/real-world-example.groovy)
+
+---
 
 ### 🔧 Integrating Parameters with environment and withEnv()
 
