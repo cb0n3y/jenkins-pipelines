@@ -1,4 +1,4 @@
-# # Daily Summary
+# Daily Summary
 
 
 ## What Have We Learned?
@@ -136,3 +136,5 @@ This exercise teaches:
 - How to parameterize a pipeline for flexibility
 - How to use withEnv() to inject parameters into shell scripts
 - How default values allow safe builds without specifying parameters each time
+
+[Solution Parameterize Tool Versions](files/pipelineParallelExecutionparameterized.groovy)
