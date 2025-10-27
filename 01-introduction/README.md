@@ -36,13 +36,21 @@ This section covers the basics of Jenkins, pipeline concepts, shell usage, and s
 - **Notes:** [README.md](day-03/README.md)
 
 ### Day 04 – Real-World Example: Preparation Stage
-- Practical pipeline example for SBOM scanning of microservices releases
-- Installing tools (Helm and Syft) in a preparation stage
-- Environment variables and shell usage in a real-world scenario
+
+- Practical pipeline example **laying the groundwork for SBOM scanning of microservices**.
+- Focus on **tool installation and environment setup**:
+  - Helm for Kubernetes package management
+  - Syft for generating SBOMs
+- Demonstrates **environment variable usage** and shell commands in a real-world CI/CD scenario.
+- Current focus is **preparation stage only**; scanning, reporting, and notifications will be added later.
 - **Key files:**
-  - [Jenkinsfile](day-04/Jenkinsfile)
-  - Example Groovy script: [real-world-example.groovy](day-04/files/real-world-example.groovy)
-- **Notes:** [README.md](day-04/README.md)
+  - [Jenkinsfile](day-04/Jenkinsfile) – Main pipeline definition
+  - [real-world-example.groovy](day-04/files/real-world-example.groovy) – Modular example for learning & testing
+- **Notes / Reference:** [README.md](day-04/README.md)
+- **Learning Outcome:** Understand how to:
+  - Install and configure tools dynamically
+  - Use environment variables and parameters in pipelines
+  - Prepare for more advanced stages in CI/CD workflows
 
 ---
 
