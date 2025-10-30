@@ -7,7 +7,7 @@ pipeline {
                 echo "Without docker"
             }
         }
-        
+
         stage('with docker') {
             agent {
                 docker {
