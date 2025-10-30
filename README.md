@@ -1,5 +1,14 @@
 # 🛠️ jenkins-pipelines
 
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/cb0n3y/jenkins-pipelines)
+![Last Commit](https://img.shields.io/github/last-commit/cb0n3y/jenkins-pipelines)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cb0n3y/jenkins-pipelines/ci.yml?label=CI%2FCD)
+![Top Language](https://img.shields.io/github/languages/top/cb0n3y/jenkins-pipelines)
+![Languages Count](https://img.shields.io/github/languages/count/cb0n3y/jenkins-pipelines)
+![Shell Scripts Linting](https://img.shields.io/badge/Linting-shellcheck-yellow)
+
+
 Welcome to **jenkins-pipelines** — a personal learning repository where I document my day-by-day progress in mastering **Jenkins Pipelines**.
 
 This repo is intended to be a living knowledge base that grows as I explore Jenkins automation, CI/CD best practices, and pipeline scripting techniques.
@@ -38,14 +47,24 @@ jenkins-pipelines/
 
 ## 🚀 Topics Covered (WIP)
 
-- [x] Jenkins setup & configuration
-- [x] Declarative vs Scripted pipelines
-- [ ] Pipeline stages & steps
-- [ ] Parallel execution
-- [ ] Shared libraries
-- [ ] Webhooks & triggers
-- [ ] Integration with Git, Docker, Kubernetes, etc.
-- [ ] Real-world CI/CD workflows
+- [x] ⚙️ Jenkins setup & configuration
+- [x] 📝 Declarative vs Scripted pipelines
+- [x] 🏗️ Pipeline stages & steps
+- [x] ⚡ Parallel execution
+- [x] 🔧 Pipeline parameters & environment variables
+- [x] 📦 Tool installation & version management (Helm, Syft, etc.)
+- [x] 🗂️ Artifact handling (archiving, storing, publishing)
+- [ ] 📡 **Webhooks & triggers**
+- [ ] 🔗 **Integration with Git, Docker, Kubernetes, etc.**
+- [ ] 🛡️ **SBOM generation & security scanning** (Syft, Trivy)
+- [ ] 📊 **Notifications & reporting** (email, Slack, custom reports)
+- [ ] 🔄 **Conditional execution** (`when {}` blocks, dynamic stages)
+- [ ] 🌐 **Pipeline visualization & Blue Ocean**
+- [ ] 🌲 **Multi-branch pipelines & CI/CD flows**
+- [ ] 📚 **Shared libraries** (custom reusable functions)
+- [ ] 🛠️ **Pipeline as code best practices** (modularization, maintainability)
+- [ ] ☁️ **Integration with cloud providers** (AWS, GCP, Azure)
+- [ ] 📦 **Kubernetes Helm deployments & charts** (pulling charts, deploying apps)
 
 > This checklist will grow and be updated as I go.
 
