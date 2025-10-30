@@ -88,7 +88,7 @@ pipeline {
                 echo "With docker"
             }
         }
-    }Jenkins agent labels must match what you specify in the pipeline.Jenkins agent labels must match what you specify in the pipeline.
+    }
 }
 ```
 
@@ -107,98 +107,34 @@ pipeline {
 ### 🐳 Using Docker as a Build Environment
 
 - Running Jenkins agents in Docker containers.
-
-The first thing you will need is the Jenkins Plugin: **docker pipelines**.
-
-
-
+- The first thing you will need is the Jenkins Plugin: **docker pipelines**.
+- [Example Docker As a Build Environment](pipelineDockerEnv.groovy)
 - Benefits of reproducible builds and isolated environments.
+- You can specify a Docker image directly in your Jenkinsfile using:
+```groovy
+agent {
+    docker {
+        image 'node:18-alpine'
+        label 'linux docker java21'
+    }
+}
+```
+- Always ensure the node running this stage has Docker installed and accessible by the Jenkins user.
 
 ---
 
 ### 🔧 Troubleshooting Jenkins While Using Docker in Jenkinsfile
 
-- Common issues with Jenkins in Docker.
-- Checking container logs and permissions.
-- Networking considerations for Git access.
+- Common issues:
+    - Docker daemon permissions (e.g., Jenkins user not in the docker group).
+    - Container image pull failures (e.g., private registry credentials missing).
+    - Network access problems when Jenkins containers try to reach GitHub or internal repos.
+- Tips for debugging:
+    - Check the Jenkins build log for the full Docker command Jenkins runs.
+    - Verify connectivity using a simple step:
 
----
-
-### 📂 Workspace Synchronization
-
-- Understanding Jenkins workspaces.
-- Using `cleanWs()` to reset the workspace.
-- Sharing artifacts between stages and builds.
-
----
-
-### 🌱 Using a Git Repository in Jenkins
-
-- Connecting Jenkins jobs to a Git repository.
-- Cloning, fetching, and checking out branches.
-
----
-
-### ⚙️ Building the Project
-
-- Using `sh` steps to execute build commands.
-- Running Docker commands inside pipelines.
-- Archiving build artifacts.
-
----
-
-### 🏛️ Revisiting Jenkins Architecture
-
-- Overview of Jenkins master-agent architecture.
-- How declarative pipelines execute across agents.
-
----
-
-### 📝 Assignments
-
-- **Assignment 1:** Create a simple CI pipeline for the website project.
-- **Assignment 2:** Integrate Docker-based build steps.
-- **Assignment 3:** Implement workspace cleanup and artifact archiving.
-- **Assignment 4:** Troubleshoot a failing build and document the solution.
-
----
-
-### 🎭 Running E2E Tests with Playwright
-
-- Automating end-to-end tests using Playwright.
-- Integrating tests into the Jenkins pipeline.
-
----
-
-### 📊 Publishing an HTML Report
-
-- Collecting and publishing test results or reports.
-- Using Jenkins `publishHTML` plugin or similar.
-
----
-
-### ⚡ Running Stages in Parallel
-
-- Running multiple stages or branches simultaneously.
-- Speeding up pipelines for independent tasks.
-
----
-
-### 🌊 Jenkins Blue Ocean Plugin
-
-- Visualizing pipelines with the Blue Ocean interface.
-- Easier navigation of stages, parallel execution, and history.
-
----
-
-### 🏗️ How to Structure a Pipeline
-
-- Organizing stages, environment variables, and steps.
-- Best practices for readability and maintainability.
-
----
-
-### ⬆️ How to Update Jenkins and Its Plugins
-
-- Keeping Jenkins core and plugins up-to-date.
-- Managing plugin dependencies safely.
+    ```groovy
+    sh 'docker run --rm node:18-alpine echo "Docker works!"'
+    ```
+- Review /var/log/jenkins/jenkins.log and the Docker daemon logs (/var/log/messages or journalctl -u docker).
+- If issues persist, test Docker manually on the same agent node where Jenkins runs.
