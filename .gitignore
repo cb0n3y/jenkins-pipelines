@@ -25,3 +25,6 @@ __pycache__/
 *.pyc
 .terraform/
 *.tfstate*
+
+# Own things
+daily_template.md
