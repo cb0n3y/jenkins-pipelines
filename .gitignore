@@ -26,5 +26,5 @@ __pycache__/
 .terraform/
 *.tfstate*
 
-# Own t hings
+# Own things
 daily_template.md
