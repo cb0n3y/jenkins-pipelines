@@ -58,8 +58,44 @@ Used inline comments (// and /* */) to document pipeline logic and improve reada
 
 Integrated Playwright end-to-end tests into the pipeline, ensuring browser-level validation of application behavior.
 
+💡 Takeaways & Lessons Learned
+
+**Jenkins & CI/CD**
+
+- When using `agent none`, you must specify an `agent` for every stage that requires workspace execution.
+- Always specify the correct Jenkins agent label when using Docker or other environment-specific tools.
+- Ensure the worker node running the job has Docker installed and accessible.
+- Example fix for a Dockerized stage:
+```groovy
+agent {
+    docker {
+        image 'mcr.microsoft.com/playwright:v1.56.1-jammy'
+        label 'linux docker java21'
+        reuseNode true
+    }
+}
+```
+- `stash`/`unstash` is essential for sharing build artifacts between stages. Remember that unstashed files are placed relative to the workspace root.
+This tells Jenkins to run the pipeline on the node where Docker is available, avoiding `docker: not found` errors.
+
 ---
 
 ### 📊 Publishing an HTML Report
 
 Published Playwright’s HTML test reports in Jenkins with the HTML Publisher plugin for easy visualization of test outcomes.
+
+```groovy
+npx playwright test --report=html
+
+...
+
+post {
+        always {
+            node('linux docker java21') {
+                junit 'test-results/junit.xml'
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                cleanWs()
+            }
+        }
+    }
+```
