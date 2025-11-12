@@ -9,7 +9,7 @@ pipeline {
 
     environment {
         FILE_NAME = 'container'
-        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm" 
+        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
         BUILD_FOLDER = "${WORKSPACE}/build"
     }
 
